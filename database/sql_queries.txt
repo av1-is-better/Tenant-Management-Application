@@ -1,0 +1,33 @@
+CREATE TABLE tenants (
+    tenant_id SERIAL PRIMARY KEY,
+    tenant_name VARCHAR(255) NOT NULL,
+    tenant_room_no INTEGER NOT NULL,
+    tenant_phone_no VARCHAR(20) NOT NULL,
+    tenant_status BOOLEAN NOT NULL,
+    tenant_rented_on DATE NOT NULL
+);
+
+CREATE TABLE billings (
+    bill_id SERIAL PRIMARY KEY,
+    tenant_id INTEGER NOT NULL,
+    bill_date DATE NOT NULL,
+    rent_charge DECIMAL(10, 2) NOT NULL,
+    power_charge DECIMAL(10, 2) NOT NULL,
+    water_charge DECIMAL(10, 2) NOT NULL,
+    other_charge DECIMAL(10, 2) NOT NULL,
+    power_consumed DECIMAL(10, 2) NOT NULL,
+    power_unit_cost DECIMAL(10, 2) NOT NULL,
+    total DECIMAL(10, 2) NOT NULL,
+    message_note TEXT,
+    FOREIGN KEY (tenant_id) REFERENCES tenants(tenant_id)
+);
+
+CREATE TABLE transactions (
+    transaction_id SERIAL PRIMARY KEY,
+    tenant_id INTEGER NOT NULL,
+    transaction_date DATE NOT NULL,
+    transaction_amount DECIMAL(10, 2) NOT NULL,
+    transaction_mode VARCHAR(50) NOT NULL,
+    FOREIGN KEY (tenant_id) REFERENCES tenants(tenant_id)
+);
+

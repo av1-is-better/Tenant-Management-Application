@@ -9,7 +9,6 @@ export default function Header() {
   return (
     <header className="p-3 bg-dark text-white">
       <div className="d-flex">
-        {/* <h2>Kunal</h2> */}
         <div className="container-sm m-auto">
           <ul className="nav col-12 col-lg-auto me-lg-auto gap-2 justify-content-center m-auto">
             {sections.map((item) => {
